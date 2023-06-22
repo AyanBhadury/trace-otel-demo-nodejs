@@ -1,0 +1,31 @@
+server:
+  log_level: info
+
+logs:
+  configs:
+    - name: nodeapp_logs
+      positions:
+        filename: /tmp/positions.yaml
+      clients:
+        - url: ${LOKI_URL}
+          basic_auth:
+            username: ${LOKI_USERNAME}
+            password: ${LOKI_PASSWORD}
+      scrape_configs:
+        - job_name: http_logs
+          loki_push_api:
+            server:
+              http_listen_port: ${LOGS_HTTP_PORT}
+
+traces:
+ configs:
+   - name: nodeapp_traces
+     receivers:
+       otlp:
+         protocols:
+           grpc:
+     remote_write:
+       - endpoint: ${TEMPO_ENDPOINT}
+         basic_auth:
+           username: ${TEMPO_USERNAME}
+           password: ${TEMPO_PASSWORD}

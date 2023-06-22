@@ -1,0 +1,23 @@
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "start_with_tracing": "tsc && node --require ./dist/tracing.js dist/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opentelemetry/auto-instrumentations-node": "^0.36.4",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.38.0",
+    "@opentelemetry/sdk-node": "^0.35.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "typescript": "^4.9.5",
+    "winston": "^3.8.2",
+    "winston-loki": "^6.0.6"
+  }
+}
